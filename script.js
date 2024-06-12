@@ -180,6 +180,8 @@ elements = {
     refund = price - totalReduction;
     if(refund<=0){refund = 0}
   
-    elements.locations.result.innerHTML = fromDate.toISOString().substring(0, 10) + " - "  + toDate.toISOString().substring(0, 10) + " = " + diffDays + " dagar <br>" + diffDays + " * " + reduction + " = " + totalReduction + "kr<br>" + price + " - " + totalReduction + " = " + refund + "kr";
+    elements.locations.result.innerHTML = `<p>${fromDate.toISOString().substring(0, 10)} - ${toDate.toISOString().substring(0, 10)} = ${diffDays} dagar</p>
+        <p>${diffDays} * ${reduction} = ${totalReduction}kr</p>
+        <p>${price} - ${totalReduction} = ${refund}kr</p>`;
   }
   
