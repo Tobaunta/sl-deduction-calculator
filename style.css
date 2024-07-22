@@ -60,13 +60,20 @@ select:focus {
   width: 50%;
 }
 
+#calc {
+    text-align: center;
+    margin-bottom: -10px;
+    color: #007bff;
+}
+
 #result {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    height: 50px;
+    height: 100px;
     padding: 10px;
+    margin-top: 10px;
     border: 1px solid #ccc;
     background-color: #ffffff;
 }

@@ -113,9 +113,14 @@ priceMatrix = {
   },
 };
 
-elements.buttons.submit.addEventListener("click", getPrice);
+
+elements.inputs.fromDate.addEventListener("change", getPrice);
+elements.inputs.toDate.addEventListener("change", getPrice);
+elements.inputs.year.addEventListener("change", getPrice);
+elements.inputs.ticket.addEventListener("change", getPrice);
 
 elements.inputs.price.addEventListener("change", listTickets);
+
 
 function getPrice() {
   const fromDateInput = elements.inputs.fromDate;
@@ -123,7 +128,7 @@ function getPrice() {
   const yearInput = elements.inputs.year;
   const priceInput = elements.inputs.price;
   const ticketInput = elements.inputs.ticket;
-  let fromDate, toDate, diffDays, price, reduction, totalReduction, refund;
+  let fromDate, toDate, diffDays, price, reduction, totalReduction, refund, ticketName;
 
   fromDate = new Date(fromDateInput.value);
   toDate = new Date(toDateInput.value);
@@ -141,7 +146,10 @@ function getPrice() {
     refund = 0;
   }
 
-  elements.locations.result.innerHTML = `<p>${fromDate
+  ticketName = `${priceInput.value == "school" ? ticketInput.options[ticketInput.selectedIndex].text : ticketInput.options[ticketInput.selectedIndex].text + " " + priceInput.options[priceInput.selectedIndex].text}`;
+
+  elements.locations.result.innerHTML = `<p>${ticketName}</p>
+  <p>${fromDate
     .toISOString()
     .substring(0, 10)} - ${toDate
     .toISOString()
@@ -160,9 +168,9 @@ function listTickets() {
     elements.inputs.ticket.options.add(new Option("90-dagar", "d90"));
     elements.inputs.ticket.options.add(new Option("Års", "y1"));
     elements.inputs.ticket.options.add(
-      new Option("30-dagars Arlanda", "arlanda30")
+      new Option("30-dagar Arlanda", "arlanda30")
     );
-    elements.inputs.ticket.options.add(new Option("30-dagars UL/SL", "ul30"));
+    elements.inputs.ticket.options.add(new Option("30-dagar UL/SL", "ul30"));
   } else if (elements.inputs.price.value == "school") {
     elements.inputs.ticket.options.add(
       new Option("Skolbiljett 90-dagar", "s90")
@@ -201,6 +209,7 @@ function listTickets() {
       new Option("Fritidsbiljett UL/SL Vårtermin", "fulvt")
     );
   }
+  elements.locations.result.innerHTML = `<p>Ange startdatum och biljett för att beräkna priset.</p>`;
 }
 
 onload = function () {
