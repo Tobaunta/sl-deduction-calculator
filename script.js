@@ -152,9 +152,9 @@ function getPrice() {
     const ticketName = `${
       priceInput.value === "school"
         ? ticketInput.options[ticketInput.selectedIndex].text
-        : ticketInput.options[ticketInput.selectedIndex].text +
+        : priceInput.options[priceInput.selectedIndex].text +
           " " +
-          priceInput.options[priceInput.selectedIndex].text
+          ticketInput.options[ticketInput.selectedIndex].text + "sbiljett"
     }`;
 
     elements.locations.result.innerHTML = `
@@ -173,11 +173,11 @@ function listTickets() {
   if (["adult", "reduced"].includes(elements.inputs.price.value)) {
     elements.inputs.ticket.options.add(new Option("30-dagar", "d30"));
     elements.inputs.ticket.options.add(new Option("90-dagar", "d90"));
-    elements.inputs.ticket.options.add(new Option("Års", "y1"));
+    elements.inputs.ticket.options.add(new Option("År", "y1"));
     elements.inputs.ticket.options.add(
-      new Option("30-dagar Arlanda", "arlanda30")
+      new Option("Arlanda 30-dagar", "arlanda30")
     );
-    elements.inputs.ticket.options.add(new Option("30-dagar UL/SL", "ul30"));
+    elements.inputs.ticket.options.add(new Option("UL/SL 30-dagar", "ul30"));
   } else if (elements.inputs.price.value == "school") {
     elements.inputs.ticket.options.add(
       new Option("Skolbiljett 90-dagar", "s90")
