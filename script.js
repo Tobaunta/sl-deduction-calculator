@@ -113,7 +113,6 @@ priceMatrix = {
   },
 };
 
-
 elements.inputs.fromDate.addEventListener("change", getPrice);
 elements.inputs.toDate.addEventListener("change", getPrice);
 elements.inputs.year.addEventListener("change", getPrice);
@@ -121,49 +120,57 @@ elements.inputs.ticket.addEventListener("change", getPrice);
 
 elements.inputs.price.addEventListener("change", listTickets);
 
+elements.locations.result.addEventListener("click", copyCalc);
+
+console.log(elements.inputs.fromDate.value == "");
 
 function getPrice() {
-  const fromDateInput = elements.inputs.fromDate;
-  const toDateInput = elements.inputs.toDate;
-  const yearInput = elements.inputs.year;
-  const priceInput = elements.inputs.price;
-  const ticketInput = elements.inputs.ticket;
-  let fromDate, toDate, diffDays, price, reduction, totalReduction, refund, ticketName;
+  if (
+    elements.inputs.fromDate.value != "" &&
+    elements.inputs.toDate.value != "" &&
+    elements.inputs.year.value != "" &&
+    elements.inputs.price.value != "" &&
+    elements.inputs.ticket.value != ""
+  ) {
+    const fromDateInput = elements.inputs.fromDate;
+    const toDateInput = elements.inputs.toDate;
+    const yearInput = elements.inputs.year;
+    const priceInput = elements.inputs.price;
+    const ticketInput = elements.inputs.ticket;
 
-  fromDate = new Date(fromDateInput.value);
-  toDate = new Date(toDateInput.value);
-  diffDays =
-    Math.round((toDate.getTime() - fromDate.getTime()) / (1000 * 3600 * 24)) +
-    1;
+    const fromDate = new Date(fromDateInput.value);
+    const toDate = new Date(toDateInput.value);
+    const diffDays = toDate.getDate() - fromDate.getDate() + 1;
 
-  price =
-    priceMatrix[yearInput.value][priceInput.value][ticketInput.value].price;
-  reduction =
-    priceMatrix[yearInput.value][priceInput.value][ticketInput.value].reduction;
-  totalReduction = diffDays * reduction;
-  refund = price - totalReduction;
-  if (refund <= 0) {
-    refund = 0;
+    const priceData =
+      priceMatrix[yearInput.value][priceInput.value][ticketInput.value];
+    const price = priceData.price;
+    const reduction = priceData.reduction;
+    const totalReduction = diffDays * reduction;
+    const refund = Math.max(price - totalReduction, 0);
+
+    const ticketName = `${
+      priceInput.value === "school"
+        ? ticketInput.options[ticketInput.selectedIndex].text
+        : ticketInput.options[ticketInput.selectedIndex].text +
+          " " +
+          priceInput.options[priceInput.selectedIndex].text
+    }`;
+
+    elements.locations.result.innerHTML = `
+    <p>${ticketName}</p>
+    <p>${fromDate.toISOString().substring(0, 10)} - ${toDate
+      .toISOString()
+      .substring(0, 10)} = ${diffDays} dagar</p>
+    <p>${diffDays} * ${reduction} = ${totalReduction}kr</p>
+    <p>${price} - ${totalReduction} = ${refund}kr</p>
+  `;
   }
-
-  ticketName = `${priceInput.value == "school" ? ticketInput.options[ticketInput.selectedIndex].text : ticketInput.options[ticketInput.selectedIndex].text + " " + priceInput.options[priceInput.selectedIndex].text}`;
-
-  elements.locations.result.innerHTML = `<p>${ticketName}</p>
-  <p>${fromDate
-    .toISOString()
-    .substring(0, 10)} - ${toDate
-    .toISOString()
-    .substring(0, 10)} = ${diffDays} dagar</p>
-        <p>${diffDays} * ${reduction} = ${totalReduction}kr</p>
-        <p>${price} - ${totalReduction} = ${refund}kr</p>`;
 }
 
 function listTickets() {
   elements.inputs.ticket.options.length = 0;
-  if (
-    elements.inputs.price.value == "adult" ||
-    elements.inputs.price.value == "reduced"
-  ) {
+  if (["adult", "reduced"].includes(elements.inputs.price.value)) {
     elements.inputs.ticket.options.add(new Option("30-dagar", "d30"));
     elements.inputs.ticket.options.add(new Option("90-dagar", "d90"));
     elements.inputs.ticket.options.add(new Option("Års", "y1"));
@@ -212,7 +219,12 @@ function listTickets() {
   elements.locations.result.innerHTML = `<p>Ange startdatum och biljett för att beräkna priset.</p>`;
 }
 
+function copyCalc() {
+  const copyText = elements.locations.result.innerText;
+  navigator.clipboard.writeText(copyText);
+}
+
 onload = function () {
   listTickets();
   elements.inputs.toDate.value = new Date().toISOString().substring(0, 10);
-}
+};

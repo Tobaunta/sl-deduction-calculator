@@ -62,7 +62,7 @@ select:focus {
 
 #calc {
     text-align: center;
-    margin-bottom: -10px;
+    margin: 2px;
     color: #007bff;
 }
 
@@ -71,9 +71,8 @@ select:focus {
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    height: 100px;
+    height: 70px;
     padding: 10px;
-    margin-top: 10px;
     border: 1px solid #ccc;
     background-color: #ffffff;
 }
