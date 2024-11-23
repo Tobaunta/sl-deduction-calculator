@@ -122,8 +122,6 @@ elements.inputs.price.addEventListener("change", listTickets);
 
 elements.locations.result.addEventListener("click", copyCalc);
 
-console.log(elements.inputs.fromDate.value == "");
-
 function getPrice() {
   if (
     elements.inputs.fromDate.value != "" &&
@@ -156,7 +154,8 @@ function getPrice() {
         ? ticketInput.options[ticketInput.selectedIndex].text
         : priceInput.options[priceInput.selectedIndex].text +
           " " +
-          ticketInput.options[ticketInput.selectedIndex].text + "sbiljett"
+          ticketInput.options[ticketInput.selectedIndex].text +
+          "sbiljett"
     }`;
 
     elements.locations.result.innerHTML = `
