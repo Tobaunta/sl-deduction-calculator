@@ -140,7 +140,9 @@ function getPrice() {
 
     const fromDate = new Date(fromDateInput.value);
     const toDate = new Date(toDateInput.value);
-    const diffDays = toDate.getDate() - fromDate.getDate() + 1;
+    // Calculate the difference in milliseconds and convert to days
+    const diffTime = Math.abs(toDate - fromDate);
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
 
     const priceData =
       priceMatrix[yearInput.value][priceInput.value][ticketInput.value];
