@@ -20,11 +20,11 @@ form {
   margin: 0 auto;
   padding: 25px;
   background-color: #ffffff;
-  max-width: 450px;
+  max-width: 600px;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  width: 95%;
+  width: 100%;
 }
 
 select {
@@ -35,9 +35,10 @@ input[type="button"] {
   background-color: #2870f0;
   color: #fff;
   cursor: pointer;
-  padding: 12px 24px;
-  margin: 12px 0;
+  padding: 15px 30px;
+  margin: 15px 0;
   font-weight: 500;
+  font-size: 1.1rem;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -50,10 +51,10 @@ input[type="date"],
 input[type="button"],
 select {
   width: 100%;
-  padding: 12px;
+  padding: 15px;
   border: 1.5px solid #e1e5ee;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   box-sizing: border-box;
   transition: all 0.3s ease;
   font-family: "Roboto", sans-serif;
@@ -73,36 +74,37 @@ select {
 }
 
 select option {
-  padding: 8px;
+  padding: 12px;
+  font-size: 1.1rem;
 }
 
 .doublerow {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding-bottom: 15px;
-  gap: 15px;
+  padding-bottom: 20px;
+  gap: 20px;
 }
 
 .date {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   width: 50%;
 }
 
 label {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: #4a5568;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 #calc {
   text-align: center;
-  margin: 20px 0 15px;
+  margin: 25px 0 20px;
   color: #2870f0;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
@@ -112,8 +114,8 @@ label {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  min-height: 70px;
-  padding: 15px;
+  min-height: 80px;
+  padding: 20px;
   border-radius: 8px;
   border: 1.5px solid #e1e5ee;
   background-color: #f8fafc;
@@ -128,5 +130,75 @@ label {
 #result p {
   margin: 0;
   color: #4a5568;
-  line-height: 1.5;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  form {
+    padding: 20px;
+    border-radius: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .doublerow {
+    flex-direction: column;
+    gap: 15px;
+    flex-grow: 0;
+  }
+
+  .date {
+    width: 100%;
+  }
+
+  input[type="date"],
+  input[type="button"],
+  select {
+    padding: 16px;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+
+  select {
+    flex-grow: 0;
+  }
+
+  select[size] {
+    height: auto;
+  }
+
+  #calc {
+    margin: 30px 0 25px;
+    font-size: 1.4rem;
+  }
+
+  #result {
+    padding: 25px;
+    margin-top: auto;
+  }
+
+  #result p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
+
+  /* Ensure select elements don't take too much vertical space */
+  select[size="3"] {
+    height: auto;
+    min-height: 120px;
+  }
+
+  select[size="5"] {
+    height: auto;
+    min-height: 180px;
+  }
 }
