@@ -1,0 +1,22 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+  font-family: "Roboto", sans-serif;
+}
+
+/* Add smooth scrolling to the whole app */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reset some basic elements */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

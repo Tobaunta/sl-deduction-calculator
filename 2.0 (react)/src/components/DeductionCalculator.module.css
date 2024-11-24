@@ -1,0 +1,190 @@
+.form {
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  transition: transform 0.2s ease;
+}
+
+.form:hover {
+  transform: translateY(-2px);
+}
+
+.form select {
+  display: inline;
+}
+
+.form input[type="date"],
+.form select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #edf2f7;
+  border-radius: 12px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  font-family: "Roboto", sans-serif;
+  background-color: #ffffff;
+  color: #2d3748;
+  cursor: pointer;
+}
+
+.form input[type="date"]:focus,
+.form select:focus {
+  border-color: #4299e1;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+}
+
+.form input[type="date"]:hover,
+.form select:hover {
+  border-color: #4299e1;
+}
+
+.form select option {
+  padding: 12px;
+  font-size: 1rem;
+}
+
+.doublerow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 50%;
+}
+
+.form label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 4px;
+}
+
+.form h4 {
+  text-align: center;
+  margin: 2rem 0 1.5rem;
+  color: #2b6cb0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  min-height: 80px;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid #edf2f7;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.result::after {
+  content: "Klicka för att kopiera";
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 0.75rem;
+  color: #718096;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.result:hover::after {
+  opacity: 1;
+}
+
+.result:hover {
+  border-color: #4299e1;
+  background-color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(66, 153, 225, 0.1);
+}
+
+.result p {
+  margin: 0;
+  color: #2d3748;
+  line-height: 1.6;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.result p:first-child {
+  font-weight: 600;
+  color: #2b6cb0;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 480px) {
+  .form {
+    padding: 1.5rem;
+    border-radius: 12px;
+    min-height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .doublerow {
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .date {
+    width: 100%;
+  }
+
+  .form input[type="date"],
+  .form select {
+    padding: 14px;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+
+  .form select[size="3"] {
+    height: auto;
+    min-height: 120px;
+  }
+
+  .form select[size="5"] {
+    height: auto;
+    min-height: 200px;
+  }
+
+  .form h4 {
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .result {
+    padding: 1.25rem;
+    margin-top: auto;
+  }
+
+  .result p {
+    font-size: 0.95rem;
+  }
+
+  .result p:first-child {
+    font-size: 1rem;
+  }
+}
