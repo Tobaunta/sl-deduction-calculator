@@ -72,6 +72,17 @@ const DeductionCalculator = () => {
   const [ticket, setTicket] = useState("d30"); // Set default ticket to 30-day ticket
   const [result, setResult] = useState<string>("");
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 480);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const getTicketOptions = () => {
     if (["adult", "reduced"].includes(priceCategory)) {
       return [
@@ -182,20 +193,20 @@ ${price} - ${totalReduction} = ${refund}kr
       <div className={styles.doublerow}>
         <select
           id="year"
-          size={3}
           value={year}
           onChange={(e) => setYear(e.target.value)}
+          size={isMobile ? 1 : 3}
         >
           <option value="y2024">Reklamation 2024</option>
         </select>
 
         <select
           id="price"
-          size={3}
           value={priceCategory}
           onChange={(e) =>
             setPriceCategory(e.target.value as PriceCategoryType)
           }
+          size={3}
         >
           <option value="adult">Vuxen</option>
           <option value="reduced">Rabatterat</option>
@@ -206,7 +217,7 @@ ${price} - ${totalReduction} = ${refund}kr
       <select
         className={styles.ticket}
         id="ticket"
-        size={5}
+        size={isMobile ? 3 : 5}
         value={ticket}
         onChange={(e) => setTicket(e.target.value)}
       >
