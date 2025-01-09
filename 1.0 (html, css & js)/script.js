@@ -15,6 +15,36 @@ elements = {
 };
 
 priceMatrix = {
+  y2025: {
+    adult: {
+      d30: { price: 1060, reduction: 71 },
+      d90: { price: 3070, reduction: 90 },
+      y1: { price: 11130, reduction: 122 },
+      arlanda30: { price: 1510, reduction: 101 },
+      ul30: { price: 2030, reduction: 135 },
+    },
+    reduced: {
+      d30: { price: 650, reduction: 43 },
+      d90: { price: 1880, reduction: 55 },
+      y1: { price: 6830, reduction: 75 },
+      arlanda30: { price: 1100, reduction: 73 },
+      ul30: { price: 1390, reduction: 93 },
+    },
+    school: {
+      s90: { price: 630, reduction: 22 },
+      f90: { price: 770, reduction: 27 },
+      s120: { price: 770, reduction: 20 },
+      f120: { price: 830, reduction: 22 },
+      sht: { price: 810, reduction: 18 },
+      fht: { price: 900, reduction: 19 },
+      svt: { price: 1020, reduction: 20 },
+      fvt: { price: 1060, reduction: 20 },
+      sulht: { price: 2470, reduction: 61 },
+      fulht: { price: 1550, reduction: 34 },
+      sulvt: { price: 3170, reduction: 61 },
+      fulvt: { price: 1800, reduction: 34 },
+    },
+  },
   y2024: {
     adult: {
       d30: {
